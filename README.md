@@ -84,22 +84,28 @@ source .venv/bin/activate  # No Windows: source .venv\Scripts\activate
 jupyter notebook notebooks/EDA.ipynb
 ```
 
-### 3. TODOs:
+### 3. Executar a API de Inferência
 
-**Rastreamento de Experimentos com MLflow**
-   - Treina múltiplos modelos
-   - Registra métricas, modelos e artefatos.
-   - Compara desempenho entre diferentes modelos.
-   - Salva o modelo com melhor desempenho
+#### Rodando locamente
 
-**API de Inferência (FastAPI - `src/api.py`)**
-   - Aceita entrada em JSON
-   - Pré-processa a requisição
-   - Carrega o melhor modelo
-   - Retorna a predição
+```bash
+uv run uvicorn src.api:app --reload --port 8000
+```
 
-**Interface do modelo com Streamlit**
-   - Permite interagir com o modelo via interface gráfica
+> **Nota:** Acesse `http://localhost:8000/docs` para a documentação interativa da API.
+
+#### Rodando com Docker
+
+```bash
+docker build -t churn-prediction-api .
+docker run -p 8000:8000 churn-prediction-api
+```
+
+### 3. TODOs
+
+#### **Interface do modelo com Streamlit**
+
+- Permite interagir com o modelo via interface gráfica
 
 ### Trabalhos Futuros
 
